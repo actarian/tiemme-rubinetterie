@@ -38,6 +38,7 @@ Website by Websolute
       this.element = element;
       this.image = element.querySelector(element.getAttribute('image'));
       this.source = element.getAttribute('source') || 'assets/img/hero/cover_alpha_{frame}.{ext}';
+      this.totalFrames = 100;
       this.rect = {
         top: 0,
         left: 0,
@@ -48,6 +49,27 @@ Website by Websolute
         x: 0,
         y: 0
       };
+      this.preload();
+    };
+
+    OverScroll.prototype.preload = function () {
+      var count = 0,
+        totalFrames = this.totalFrames,
+        getSrc = this.getSrc;
+
+      var next = function () {
+        var image = new Image();
+        var onload = function () {
+          if (count < totalFrames) {
+            count++;
+            next();
+          }
+        }.bind(this);
+        image.onload = onload;
+        image.src = this.getSrc(count + 1);
+      }.bind(this);
+
+      next();
     };
 
     OverScroll.prototype.scroll = function (scrollY) {
@@ -61,7 +83,7 @@ Website by Websolute
       windowRect.width = window.innerWidth;
       windowRect.height = window.innerHeight;
       var intersection = this.getIntersection(rect, windowRect);
-      var frame = 1 + Math.round(intersection.y * 99);
+      var frame = 1 + Math.round(intersection.y * (this.totalFrames - 1));
       var src = this.getSrc(frame);
       if (this.src !== src) {
         this.src = src;
