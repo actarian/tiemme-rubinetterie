@@ -40,6 +40,7 @@ Website by Websolute
     var OverScroll = function (element) {
       this.element = element;
       this.image = element.querySelector(element.getAttribute('image'));
+      this.image.onload = this.onload.bind(this);
       this.source = element.getAttribute('source') || 'assets/img/hero/cover_alpha_{frame}.{ext}';
       this.totalFrames = 100;
       this.rect = {
@@ -75,6 +76,30 @@ Website by Websolute
       next();
     };
 
+    OverScroll.prototype.setFrame = function (frame) {
+      this.frame = frame;
+      if (!this.busy && this.currentFrame !== frame) {
+        this.busy = true;
+        if (this.currentFrame === undefined) {
+          this.currentFrame = frame;
+        }
+        var nextFrame = frame;
+        if (frame > this.currentFrame) {
+          nextFrame = this.currentFrame + 1;
+        } else if (frame > this.currentFrame) {
+          nextFrame = this.currentFrame - 1;
+        }
+        this.currentFrame = nextFrame;
+        var src = this.getSrc(nextFrame);
+        this.image.src = src;
+      }
+    };
+
+    OverScroll.prototype.onload = function () {
+      this.busy = false;
+      this.setFrame(this.frame);
+    };
+
     OverScroll.prototype.scroll = function (scrollY) {
       var element = this.element;
       var boundingRect = element.getBoundingClientRect();
@@ -87,11 +112,7 @@ Website by Websolute
       windowRect.height = window.innerHeight;
       var intersection = this.getIntersection(rect, windowRect);
       var frame = 1 + Math.round(intersection.y * (this.totalFrames - 1));
-      var src = this.getSrc(frame);
-      if (this.src !== src) {
-        this.src = src;
-        this.image.src = src;
-      }
+      this.setFrame(frame);
     };
 
     OverScroll.prototype.getIntersection = function (aRect, bRect) {
