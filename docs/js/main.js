@@ -92,8 +92,13 @@ Website by Websolute
         }
         */
         this.currentFrame = nextFrame;
-        var src = this.getSrc(nextFrame);
-        this.image.src = src;
+        // var src = this.getSrc(nextFrame);
+        // this.image.src = src;
+        var width = this.image.parentNode.getBoundingClientRect().width;
+        var offset = Math.min(49, Math.floor(frame / 2));
+        console.log(width);
+        // console.log(width, offset, (-width * offset));
+        this.image.style.transform = 'translate3d(' + (-width * offset) + 'px,0,0)';
       }
     };
 
