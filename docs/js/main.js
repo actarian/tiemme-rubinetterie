@@ -77,7 +77,7 @@ Website by Websolute
     };
 
     OverScroll.prototype.setFrame = function (frame) {
-      this.frame = frame;
+      this.frame = frame = 1 + Math.floor(frame / 2) * 2;
       if (!this.busy && this.currentFrame !== frame) {
         this.busy = true;
         if (this.currentFrame === undefined) {
@@ -85,9 +85,9 @@ Website by Websolute
         }
         var nextFrame = frame;
         if (frame > this.currentFrame) {
-          nextFrame = this.currentFrame + 1;
-        } else if (frame > this.currentFrame) {
-          nextFrame = this.currentFrame - 1;
+          nextFrame = this.currentFrame + 2;
+        } else if (frame < this.currentFrame) {
+          nextFrame = this.currentFrame - 2;
         }
         this.currentFrame = nextFrame;
         var src = this.getSrc(nextFrame);
