@@ -55,7 +55,8 @@
     height: 100vw;
     max-width: 1280px;
     max-height: 1280px;
-    margin: 0 auto;
+    margin-left: auto;
+    margin-right: auto;
 
     .overscroll__inner {
       position: absolute;

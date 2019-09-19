@@ -26,7 +26,7 @@ ul {
   &.inline {
     list-style: none;
 
-    > li {
+    >li {
       display: inline-block;
     }
   }
@@ -44,10 +44,10 @@ Spacing (margin, padding)
 --------------------------------------------------*/
 
 .top--space {
-  padding-top: 12rem;
+  margin-top: 12rem;
 
   @include xs {
-    padding-top: 3.5rem;
+    margin-top: 3.5rem;
   }
 }
 
@@ -144,6 +144,6 @@ Spacing (margin, padding)
   opacity: .7;
 }
 
-.tab-content > .active.in {
+.tab-content>.active.in {
   opacity: 1;
 }
