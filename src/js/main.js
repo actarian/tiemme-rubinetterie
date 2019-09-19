@@ -35,8 +35,15 @@ Website by Websolute
       height: 0,
     };
 
+    var MODES = {
+      NONE: 0,
+      FIXED: 1,
+      ABSOLUTE: 2,
+    };
+
     var OverScroll = function (element) {
       this.element = element;
+      this.inner = element.querySelector('.overscroll__inner');
       this.image = element.querySelector(element.getAttribute('image'));
       this.image.onload = this.onload.bind(this);
       this.source = element.getAttribute('source') || 'assets/img/hero/cover_alpha_{frame}.{ext}';
@@ -47,10 +54,7 @@ Website by Websolute
         width: 0,
         height: 0,
       };
-      this.intersection = {
-        x: 0,
-        y: 0
-      };
+      window.addEventListener('resize', this.scroll.bind(this));
       // this.preload();
     };
 
@@ -108,25 +112,26 @@ Website by Websolute
       var element = this.element;
       var boundingRect = element.getBoundingClientRect();
       var rect = this.rect;
-      rect.top = boundingRect.top - window.innerHeight / 2 + boundingRect.height / 2;
+      rect.top = boundingRect.top;
       rect.left = boundingRect.left;
       rect.width = boundingRect.width;
       rect.height = boundingRect.height;
       windowRect.width = window.innerWidth;
       windowRect.height = window.innerHeight;
-      var intersection = this.getIntersection(rect, windowRect);
-      var frame = 1 + Math.round(intersection.y * (this.totalFrames - 1));
+      // if (this.source === 'assets/img/hero/cover_alpha_{frame}.{ext}') {
+      var pow = 0;
+      if (this.source === 'assets/img/video/video_{frame}.{ext}' || windowRect.width < 768) {
+        // pow = rect.top / (window.innerHeight + (window.innerHeight - rect.height));
+        pow = rect.top / (window.innerHeight * 0.5 + (window.innerHeight - rect.height));
+        pow = ((pow - 1) * -1) / 2;
+        pow = Math.max(0, Math.min(1, pow));
+      } else {
+        pow = 0.5 + (rect.top + (rect.top + rect.height / 2 - window.innerHeight / 2)) / window.innerHeight;
+        pow = ((pow - 1) * -1) / 2;
+        pow = Math.max(0, Math.min(1, pow));
+      }
+      var frame = 1 + Math.round(pow * (this.totalFrames - 1));
       this.setFrame(frame);
-    };
-
-    OverScroll.prototype.getIntersection = function (aRect, bRect) {
-      var dx = aRect.left > bRect.left ? 0 : Math.abs(bRect.left - aRect.left);
-      var dy = aRect.top > bRect.top ? 0 : Math.abs(bRect.top - aRect.top);
-      var x = dx ? (1 - dx / aRect.width) : ((bRect.left + bRect.width) - aRect.left) / aRect.width;
-      var y = dy ? (1 - dy / aRect.height) : ((bRect.top + bRect.height) - aRect.top) / aRect.height;
-      this.intersection.x = 1 - Math.max(0, Math.min(1, x));
-      this.intersection.y = 1 - Math.max(0, Math.min(1, y));
-      return this.intersection;
     };
 
     OverScroll.prototype.getSrc = function (frame) {
