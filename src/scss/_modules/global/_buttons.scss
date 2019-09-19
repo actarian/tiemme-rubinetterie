@@ -1,0 +1,94 @@
+@import 'variables';
+@import 'mixins';
+
+/*--------------------------------------------------
+Buttons
+--------------------------------------------------*/
+
+.btn {
+  position: relative;
+  @include fontMontserrat(700);
+  color: $color-btn;
+  font-size: 13px;
+  margin: 0;
+  padding: 17px 23px;
+  text-transform: uppercase;
+  transition: all .5s ease;
+  border-radius: 25px;
+  background-color: $color-blue;
+  outline: none;
+  border: none;
+  text-decoration: none;
+
+  &:focus {
+    box-shadow: none;
+    outline: none;
+  }
+
+  //types
+  &--main {
+    border: 1px solid $color-blue;
+
+    &:hover {
+      color: $color-blue;
+      box-shadow: 0 18px 40px -12px rgba($color-blue, .7);
+      background-color: transparent;
+      transform: translateY(-5px);
+      opacity: 1;
+
+      &:focus {
+        color: $color-blue;
+      }
+    }
+
+    &:focus {
+      color: $color-btn;
+    }
+  }
+
+  &--vr {
+    display: inline-flex;
+    align-items: center;
+    background-color: $color-light-grey;
+    color: rgba($color-text, .6);
+    border: 1px solid $color-light-grey;
+
+    @include xs {
+      color: $color-text;
+    }
+
+    &:hover {
+      color: $color-text;
+      box-shadow: 0 18px 40px -12px rgba($color-light-grey, .7);
+      background-color: $color-sky;
+      border-color: $color-sky;
+
+      &:focus {
+        color: $color-text;
+      }
+
+      .ico {
+        fill: $color-text;
+      }
+
+      @include xs {
+        color: $color-text;
+      }
+    }
+
+    &:focus {
+      color: rgba($color-text, .6);
+    }
+
+    .ico {
+      fill: $color-vr;
+      margin-right: 10px;
+      transition: all .5s ease;
+
+      @include xs {
+        fill: $color-text;
+      }
+    }
+  }
+
+}

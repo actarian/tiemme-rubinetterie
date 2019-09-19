@@ -1,0 +1,33 @@
+//--------------------------------------------------
+//Variables
+//--------------------------------------------------
+
+// $var
+$container-width: 1440px;
+$container-medium-width: 1200px;
+$container-small-width: 920px;
+$col--gap: calc((#{$container-width} / 12) + 12px); //20px
+
+$font-Montserrat: 'Montserrat', sans-serif;
+
+// $colors
+$black: #000000;
+$white: #ffffff;
+$red: #ff0000;
+$color-text: #283031;
+$color-text-sky: #55989b;
+//$border-sky: #9ac4c6;
+$color-blue: #1f3655;
+$color-bg-blue: #eaf2fd;
+$color-grey: #a9adad;
+$color-light-blue: #eef1f4;
+$color-sky: #e6f3f4;
+$color-light-grey: #f0f3f3;
+$color-vr: #8c9090;
+$color-btn: #f0f4f4;
+
+// $animations
+$expo: cubic-bezier(1.000, 0.000, 0.000, 1.000);
+$smooth: cubic-bezier(0, 0.97, 0.43, 1);
+
+

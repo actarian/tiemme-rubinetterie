@@ -1,0 +1,82 @@
+@import 'variables';
+@import 'mixins';
+
+/*--------------------------------------------------
+Footer
+--------------------------------------------------*/
+
+.footer {
+  padding: 12rem 0;
+
+  .title {
+    font-size: 1.4rem;
+  }
+
+  &__main {
+    flex: 0 0 71%;
+    max-width: 71%;
+    padding: 0 2rem;
+
+    @include xs_2 {
+      flex: 0 0 100%;
+      max-width: 100%;
+    }
+
+    .text {
+      font-size: 1.4rem;
+    }
+
+    .site {
+      text-decoration: underline;
+    }
+  }
+
+  &__language {
+    flex: 0 0 29%;
+    max-width: 29%;
+    text-align: right;
+    padding: 0 2rem;
+
+    @include xs_2 {
+      flex: 0 0 100%;
+      max-width: 100%;
+      text-align: left;
+      padding-top: 8rem;
+    }
+
+    .lang__switcher {
+
+      li {
+        padding: 0 1rem;
+
+        @include xs_2 {
+          &:first-child {
+            padding-left: 0;
+          }
+        }
+
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+
+      a {
+        font-weight: 400;
+      }
+    }
+  }
+
+  &__ws {
+    padding-top: 7.6rem;
+
+    a {
+      display: flex;
+      align-items: center;
+    }
+
+    .ico {
+      color: $color-text;
+      margin-right: 5px;
+    }
+  }
+}

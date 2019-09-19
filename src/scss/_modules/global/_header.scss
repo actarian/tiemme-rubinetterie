@@ -1,0 +1,94 @@
+@import 'variables';
+@import 'mixins';
+
+/*--------------------------------------------------
+Header
+--------------------------------------------------*/
+.header {
+  position: absolute;
+  z-index: 2;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: auto;
+  padding: 5.5rem 0 0;
+
+  @include xs_2 {
+    padding: 2rem 0 0;
+  }
+
+  .logo-main img {
+    width: 18rem;
+  }
+
+  &__scroll {
+    display: none;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+
+    @include xs_2 {
+      justify-content: center;
+    }
+
+    .cta {
+      @include xs_2 {
+        display: none;
+      }
+    }
+
+    .btn {
+      padding: 12px 23px;
+
+      &:first-child {
+        margin-right: 6px;
+      }
+
+      &:hover {
+        transform: none;
+      }
+    }
+  }
+
+  //on scroll
+  &--fixed {
+    position: fixed;
+    backface-visibility: hidden;
+    z-index: 15;
+    padding: 1rem 0;
+    background-color: $white;
+    border-bottom: 1px solid $color-light-blue;
+
+    .header__scroll {
+      display: flex;
+    }
+
+    .container {
+      padding-left: 15px;
+      max-width: 1150px;
+    }
+
+    .logo-main {
+      display: none;
+    }
+  }
+
+  &--enter {
+    animation-name: header-animation-enter;
+    animation-duration: 1s;
+    transition-timing-function: linear;
+  }
+
+}
+
+@keyframes header-animation-enter {
+
+  from {
+    transform: translateY(-100px);
+  }
+
+  to {
+    transform: translateY(0);
+  }
+
+}

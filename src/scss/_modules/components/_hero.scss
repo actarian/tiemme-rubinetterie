@@ -1,0 +1,177 @@
+@import '../global/variables';
+@import '../global/mixins';
+
+/*--------------------------------------------------
+Hero
+--------------------------------------------------*/
+
+.hero {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100vh;
+  min-height: 50vw;
+  max-width: 100%;
+  overflow: hidden;
+  background-color: $color-light-blue;
+
+  @include xs_2 {
+    height: auto;
+    padding-top: 8rem;
+  }
+
+  .grid {
+    align-self: flex-end;
+
+    &__item {
+
+      @include lg {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+
+      @include xs_2 {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+    }
+  }
+
+  .block-title {
+    padding-right: 3rem;
+    padding-bottom: 40px;
+
+    @include lg {
+      padding-right: 0;
+    }
+
+    .title {
+      margin-bottom: 20px;
+
+      @include xs_2 {
+        margin-bottom: 0;
+      }
+    }
+
+    .text {
+      font-size: 16px;
+      margin-bottom: 1rem;
+
+      @include xs_2 {
+        font-size: 14px;
+      }
+    }
+
+    .cersaie-img {
+      padding-top: 2.5rem;
+    }
+
+    .cta {
+      display: block;
+      text-align: left;
+      padding-top: 4rem;
+
+      @include xs_2 {
+        display: none;
+      }
+
+      .btn {
+
+        @include sm {
+          margin: 10px 0 !important;
+          display: block;
+        }
+      }
+    }
+  }
+
+  &-image {
+    /*
+    text-align: right;
+    padding-right: $col--gap;
+    */
+    position: absolute;
+    bottom: -12vw;
+    width: 60vw;
+    right: 0;
+
+    @include lg {
+      padding-right: 0;
+    }
+
+    @include xs_2 {
+      text-align: center;
+      padding-top: 4rem;
+
+      img {
+        max-width: 50%;
+      }
+    }
+  }
+
+  [overscroll] {
+    position: absolute;
+    z-index: 0;
+    width: 100%;
+    height: 100vh;
+    top: 0;
+    left: 0;
+
+    .overscroll__inner {
+      position: absolute;
+      z-index: 0;
+      width: 100%;
+      height: 100vh;
+      top: 0;
+
+      img {
+        position: absolute;
+        max-width: 60vw;
+        max-height: 100vh;
+        bottom: -12vw;
+        left: 40vw;
+      }
+    }
+
+    @include md {
+      .overscroll__inner {
+        img {
+          max-width: 100vw;
+          max-height: 100vh;
+          bottom: -15vw;
+          left: 30vw;
+        }
+      }
+    }
+
+    @include sm {
+      .overscroll__inner {
+        img {
+          bottom: -19vw;
+          left: 20vw;
+        }
+      }
+    }
+
+    @include xs {
+      position: relative;
+      z-index: 0;
+      height: 100vw;
+
+      .overscroll__inner {
+        position: relative;
+        height: 100vw;
+
+        img {
+          position: absolute;
+          max-width: 100%;
+          max-height: none;
+          bottom: -18vw;
+          left: 0;
+        }
+      }
+    }
+
+  }
+
+}

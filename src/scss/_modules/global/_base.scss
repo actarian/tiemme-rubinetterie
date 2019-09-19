@@ -1,0 +1,162 @@
+@import 'variables';
+@import 'mixins';
+
+/*--------------------------------------------------
+Base
+--------------------------------------------------*/
+
+html {
+  font-size: 62.5%; // 10px => 16px
+}
+
+.wrapper {
+  background: $white;
+  max-width: 100%;
+  height: 100%;
+  padding: 0;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.container--width {
+  width: 100%;
+  max-width: $container-width;
+  margin: 0 auto;
+  height: 100%;
+
+  @include sm {
+    max-width: 100%;
+  }
+
+  @include xs_2 {
+    padding: 0 4rem !important;
+  }
+
+}
+
+.container--full {
+  width: 100%;
+  max-width: 1920px;
+  padding: 0;
+  margin: 0 auto;
+
+  &-mobile {
+    @include xs_2 {
+      padding: 0 !important;
+    }
+  }
+}
+
+.container---medium {
+  width: 100%;
+  max-width: $container-medium-width;
+  margin: 0 auto;
+
+  @include xs_2 {
+    padding: 0 4rem;
+  }
+}
+
+.container---small {
+  width: 100%;
+  max-width: $container-small-width;
+  margin: 0 auto;
+
+  @include xs_2 {
+    padding: 0 4rem;
+  }
+}
+
+.container--gap {
+  padding-left: $col--gap;
+
+  @include lg {
+    padding-left: 15px;
+  }
+}
+
+// Other
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+* {
+  min-height: 0;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+
+a {
+  color: $color-text;
+  text-decoration: none;
+  outline: none;
+
+  &:hover {
+    color: $color-text;
+    text-decoration: none;
+    opacity: .8;
+  }
+
+  &:focus {
+    color: $color-text;
+    text-decoration: none;
+    outline: none;
+  }
+}
+
+button {
+  cursor: pointer;
+  background: none;
+  padding: 0;
+  margin: 0;
+  border: none;
+  outline: none !important;
+}
+
+ul, ol {
+  margin: 0;
+}
+
+textarea {
+  resize: none;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+
+::-moz-selection {
+  color: $white;
+  background: $color-text;
+}
+
+::selection {
+  color: $white;
+  background: $color-text;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+}
+
+//
+// Animations
+// --------------------------------------------------
+a, a:hover,
+button,
+button:hover {
+  transition: all 0.2s ease-in-out;
+}
+

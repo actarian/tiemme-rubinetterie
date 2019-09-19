@@ -1,0 +1,282 @@
+@import 'variables';
+@import 'mixins';
+
+/*--------------------------------------------------
+Sections
+--------------------------------------------------*/
+
+// == Lisiting items
+.listing {
+  position: relative;
+  padding: 23rem 0;
+
+  @include md {
+    padding: 12rem 0;
+  }
+
+  .info--block {
+    padding-bottom: 12rem;
+
+    @include xs_2 {
+      padding-bottom: 6rem;
+    }
+
+    .text {
+      font-size: 2.4rem;
+
+      .sub-text {
+        display: block;
+        padding-top: 3rem;
+      }
+
+      @include xs_2 {
+        font-size: 2rem;
+
+        br {
+          display: none;
+        }
+      }
+    }
+  }
+
+  .mobile-gap {
+
+    @include xs_2 {
+
+      &--rl {
+        padding-right: 4rem;
+        padding-left: 4rem;
+      }
+
+      &--right {
+        padding-right: 4rem;
+      }
+
+      &--left {
+        padding-left: 4rem;
+      }
+
+    }
+  }
+
+  .col-gap {
+
+    &--left {
+      padding-left: 5.5rem;
+    }
+
+    &--right {
+      padding-right: 5.5rem;
+    }
+  }
+
+  .mobile-space {
+
+    &--bottom {
+      padding-bottom: 3.5rem;
+    }
+
+    &--top {
+      padding-top: 3.5rem;
+    }
+  }
+
+  .mobile-item-space {
+
+    &--right {
+      @include xs {
+        padding-right: 6rem;
+      }
+
+      @include xxs_2 {
+        padding-right: 3rem;
+      }
+    }
+
+    &--left {
+      @include xs {
+        padding-left: 6rem;
+      }
+
+      @include xxs_2 {
+        padding-left: 3rem;
+      }
+    }
+  }
+
+}
+
+
+// == Contact
+.contact {
+  padding: 12rem 0 13rem;
+
+  .title {
+    margin-bottom: 2.5rem;
+
+    @include xs_2 {
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .text {
+    font-size: 2.4rem;
+
+    .sub-text {
+      display: block;
+      padding-top: 3rem;
+    }
+
+    @include xs {
+      font-size: 1.4rem;
+
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .form {
+    padding-top: 7rem;
+  }
+
+  .grid {
+
+    &__item {
+
+      @include sm {
+        flex: 0 0 50%;
+        max-width: 50%;
+      }
+
+      @include xs {
+        flex: 0 0 100%;
+        max-width: 100%;
+      }
+
+      &.has--offset {
+        margin-left: 6%;
+
+        @include sm {
+          margin-left: 0;
+        }
+      }
+    }
+  }
+
+  .catalog-checkbox {
+    padding-top: 2rem;
+
+    .checkbox--block {
+      border: 1px solid $color-blue;
+      background-color: $color-bg-blue;
+      padding: 2rem 0 2rem 3rem;
+
+      @include xs_2 {
+        padding: 2rem 0 2rem 2rem;
+      }
+
+      .checkbox__holder {
+        color: $color-blue;
+        font-size: 2rem;
+        margin: 0;
+
+        @include xs {
+          font-size: 1.5rem;
+        }
+
+        strong, b {
+          color: $color-blue;
+        }
+
+        &-check {
+          top: 2px;
+          border-color: $color-blue;
+          background-color: $color-bg-blue;
+
+          &:after, &:before {
+            background-color: $color-blue;
+          }
+        }
+      }
+    }
+  }
+
+  .privacy-checkbox {
+    padding: 6.5rem 0 2rem;
+
+    @include xs {
+      padding: 5rem 0 0;
+    }
+  }
+
+  .cta {
+    text-align: center;
+    padding-top: 5rem;
+
+    .btn {
+      font-size: 1.6rem;
+      padding-left: 6rem;
+      padding-right: 6rem;
+    }
+  }
+}
+
+
+//Privacy Page
+.privacy-content {
+  position: relative;
+  padding: 25rem 0 10rem;
+
+  @include sm {
+    padding: 18rem 0 10rem;
+  }
+
+  @include xs {
+    padding: 14rem 0 0;
+  }
+
+  @include xs_2 {
+    padding: 6rem 0 0;
+  }
+
+  .text-content {
+    @include fontMontserrat(300);
+    color: $color-text;
+    font-size: 1.6rem;
+    line-height: 1.75;
+    padding: 3rem 0 5rem;
+  }
+
+  .content-block {
+    padding: 5.5rem 0;
+
+    @include xs_2 {
+      padding: 3rem 0;
+    }
+
+    .title {
+      padding-bottom: 3rem;
+    }
+
+    .text {
+      @include fontMontserrat(300);
+      color: $color-text;
+      font-size: 1.6rem;
+      line-height: 1.75;
+    }
+  }
+}
+
+
+// Video CMP
+.video-component {
+  width: 100%;
+  max-width: calc(100vw - (1440px / 12) - 120px);
+
+  @include lg {
+    max-width: 100%;
+  }
+}

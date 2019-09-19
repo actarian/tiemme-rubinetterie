@@ -1,0 +1,149 @@
+@import 'variables';
+@import 'mixins';
+
+/*--------------------------------------------------
+Global
+--------------------------------------------------*/
+
+.bg--white {
+  background-color: $white;
+}
+
+.bg--black {
+  background-color: $black;
+}
+
+.bg--sky {
+  background-color: $color-light-blue;
+}
+
+ul {
+
+  &.list {
+    list-style: none;
+  }
+
+  &.inline {
+    list-style: none;
+
+    > li {
+      display: inline-block;
+    }
+  }
+}
+
+svg.ico {
+  width: 20px;
+  height: 20px;
+  vertical-align: middle;
+  max-width: 100%;
+}
+
+/*--------------------------------------------------
+Spacing (margin, padding)
+--------------------------------------------------*/
+
+.top--space {
+  padding-top: 12rem;
+
+  @include xs {
+    padding-top: 3.5rem;
+  }
+}
+
+.no-relative {
+  position: initial;
+}
+
+//margin
+.mr-5 {
+  margin-right: 5rem !important;
+}
+
+.mr-10 {
+  margin-right: 10rem;
+}
+
+.mr-15 {
+  margin-right: 15rem;
+}
+
+.mr-20 {
+  margin-right: 20rem;
+}
+
+.mr-30 {
+  margin-right: 3rem;
+}
+
+
+.ml-5 {
+  margin-left: 5rem !important;
+}
+
+.ml-10 {
+  margin-left: 10rem;
+}
+
+.ml-15 {
+  margin-left: 15rem;
+}
+
+.ml-20 {
+  margin-left: 20rem;
+}
+
+.ml-30 {
+  margin-left: 3rem;
+}
+
+//padding
+.pd-0 {
+  padding: 0;
+}
+
+.ptop-2 {
+  padding-top: 2rem;
+}
+
+//Config Bootstrap
+
+.collapse {
+
+  &.active {
+    display: block;
+  }
+}
+
+.dropdown {
+
+  &.active {
+
+    .dropdown-menu {
+
+      display: block;
+    }
+  }
+}
+
+.modal.active {
+  opacity: 1;
+}
+
+.modal.active .modal-dialog {
+  -webkit-transform: translate(0, 22%);
+  transform: translate(0, 22%);
+
+  @include xs {
+    -webkit-transform: translate(0, 5%);
+    transform: translate(0, 5%);
+  }
+}
+
+.modal-backdrop.active {
+  opacity: .7;
+}
+
+.tab-content > .active.in {
+  opacity: 1;
+}

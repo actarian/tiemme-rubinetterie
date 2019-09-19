@@ -1,0 +1,19 @@
+﻿//Global
+@import "_modules/global/variables";
+@import "_modules/global/base";
+@import "_modules/global/mixins";
+@import "_modules/global/typography";
+@import "_modules/global/buttons";
+@import "_modules/global/header";
+@import "_modules/global/footer";
+@import "_modules/global/global";
+@import "_modules/global/form";
+@import "_modules/global/sections";
+@import "_modules/global/grid";
+@import "_modules/global/animations";
+
+//Modules
+@import "_modules/components/hero";
+@import "_modules/components/box"; 
+@import "_modules/components/sticky-follower";
+

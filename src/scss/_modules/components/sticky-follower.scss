@@ -1,0 +1,43 @@
+@import '../global/variables';
+@import '../global/mixins';
+
+/*--------------------------------------------------
+Sticky Buttons
+--------------------------------------------------*/
+.sticky-follower {
+  display: none;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+  background-color: $color-blue;
+  z-index: 10;
+  align-items: stretch;
+
+  @include xs_2 {
+    display: flex;
+  }
+
+  .btn {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    padding: 15px 0;
+    font-size: 12px;
+    width: 100%;
+    max-width: 50%;
+    border-radius: 0;
+
+    @include xxs_2 {
+      font-size: 11px;
+    }
+
+    &:hover {
+      color: $color-btn;
+      box-shadow: none;
+      transform: none;
+    }
+  }
+}

@@ -1,0 +1,192 @@
+@import 'variables';
+@import 'mixins';
+
+/*--------------------------------------------------
+Form
+--------------------------------------------------*/
+.form {
+  line-height: 1.4;
+  font-size: 16px;
+
+  .form-group {
+    display: block;
+    position: relative;
+    z-index: 1;
+  }
+
+  //form thin
+  &.form-thin {
+
+    .form-group {
+      display: flex;
+      align-items: flex-end;
+      border-bottom: 1px solid $color-text;
+      margin-bottom: 7rem;
+
+      @include xs {
+        margin-bottom: 4rem;
+      }
+    }
+
+    .label {
+      flex: 0 0 30%;
+      max-width: 30%;
+      @include fontMontserrat(600);
+      color: $color-text;
+      font-size: 13px;
+      padding-bottom: 12px;
+      text-transform: uppercase;
+
+      @include xs {
+        font-size: 1.2rem;
+        padding-bottom: 10px;
+      }
+
+      @media screen and (min-width: $md2-width) {
+        flex: 0 0 20%;
+        max-width: 20%;
+      }
+    }
+
+    input,
+    select {
+      flex: 0 0 70%;
+      max-width: 70%;
+      cursor: pointer;
+      @include fontMontserrat(300);
+      border: 0;
+      font-size: 20px;
+      padding: 10px 5px;
+      border-radius: 0;
+      width: 100%;
+      line-height: 1.4;
+      transition: all 0.35s $smooth;
+      height: auto !important;
+      background-color: transparent;
+      box-shadow: none;
+
+      @include xs {
+        font-size: 1.5rem;
+      }
+
+      @media screen and (min-width: $md2-width) {
+        flex: 0 0 80%;
+        max-width: 80%;
+
+      }
+    }
+
+    select {
+      background: url('../assets/img/icons/caret-down.png') no-repeat 100% 50%;
+      -moz-appearance: none;
+      -webkit-appearance: none;
+      appearance: none;
+
+      option {
+        background: $color-text;
+        color: $white;
+      }
+    }
+
+    textarea {
+      border: 1px solid #cfc5c5;
+      font-size: 14px;
+      background: transparent;
+      padding: 10px;
+    }
+  }
+
+  //checkbox
+  .checkbox__holder {
+    @include fontMontserrat(300);
+    font-size: 14px;
+    color: $color-text;
+    line-height: 24px;
+    display: inline-block;
+    position: relative;
+    padding-left: 3.8rem;
+    margin-bottom: 20px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    cursor: pointer;
+
+    @include xs {
+      font-size: 1.2rem;
+    }
+
+    a {
+      font-weight: 900;
+      color: $color-text;
+      text-decoration: underline !important;
+
+    }
+
+    input {
+      position: absolute;
+      opacity: 0;
+      cursor: pointer;
+      height: 0;
+      width: 0;
+    }
+
+    &-check {
+      cursor: pointer;
+      position: absolute;
+      top: 0;
+      left: 0;
+      height: 20px;
+      width: 20px;
+      background-color: $color-light-blue;
+      border: 1px solid $color-text;
+
+      @include xs {
+        top: 2px;
+      }
+
+      &:before,
+      &:after {
+        opacity: 0;
+        content: "";
+        position: absolute;
+        width: 2px;
+        left: 8px;
+        height: 16px;
+        top: 1px;
+        background-color: $color-text;
+      }
+
+      &:before {
+        transform: rotate(45deg);
+      }
+
+      &:after {
+        transform: rotate(-45deg);
+      }
+
+      /*&:after {
+        opacity: 0;
+        content: "";
+        position: absolute;
+        left: 6px;
+        top: 2px;
+        width: 7px;
+        height: 11px;
+        border: solid $color-text;
+        border-width: 0 2px 2px 0;
+        -webkit-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+        transform: rotate(45deg);
+      }*/
+    }
+
+    input:checked ~ .checkbox__holder-check {
+      &:after, &:before {
+        opacity: 1;
+      }
+    }
+
+  }
+}
+

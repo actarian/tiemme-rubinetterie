@@ -1,0 +1,268 @@
+@import '../global/variables';
+@import '../global/mixins';
+
+/*--------------------------------------------------
+BOX-es
+--------------------------------------------------*/
+
+//global
+.block-title {
+  position: relative;
+  z-index: 2;
+
+  @include xs {
+    padding-top: 5rem;
+  }
+
+  .title {
+
+    //Animations
+    .char {
+      animation-delay: calc(0.5s * var(--char-percent));
+      opacity: 0.99;
+
+      @keyframes slide-in {
+        0% {
+          opacity: 0;
+          transform: translateX(150%) scaleX(0.5);
+        }
+      }
+
+      @keyframes will-change {
+        0% {
+          will-change: transform;
+        }
+        100% {
+          will-change: auto;
+        }
+      }
+    }
+
+  }
+
+  .text {
+    font-size: 18px;
+    margin-bottom: 0;
+
+    @include xs_2 {
+      font-size: 14px;
+
+      br {
+        display: none;
+      }
+    }
+  }
+
+  .cta {
+    display: inline-block;
+    text-align: center;
+    padding-top: 2.5rem;
+
+    .small {
+      padding: 10px;
+    }
+
+    &--inline {
+      .btn:first-child {
+        margin-right: 8px;
+      }
+    }
+  }
+
+}
+
+
+// Image block
+.image__block {
+  position: relative;
+  z-index: 2;
+  padding: 12rem 0;
+
+  @include xs {
+    padding: 6rem 0;
+  }
+
+  &-item {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+    //padding-top: (560px / 1020px ) * 93%; //0.55:1
+    //padding-top: (160px / 202px ) * 46%; // 1.26:1
+    //padding-top: (400px / 400px ) * 51%; // 1:1
+
+    &.image--space-top {
+      padding-top: calc(100vw / 12 - 40px);
+
+      @include xs_2 {
+        padding-top: 0;
+      }
+    }
+
+    &.width--auto {
+      width: auto;
+    }
+
+    &.block--absolute {
+      position: absolute;
+      top: auto;
+      z-index: 1;
+
+      @include xs_2 {
+        position: relative;
+      }
+    }
+
+    &.block--right {
+      right: 0;
+      text-align: right;
+    }
+  }
+
+  .image--align {
+
+    &-left {
+      text-align: right;
+      margin-left: auto;
+    }
+
+    &-center {
+      text-align: center;
+      margin: 0 auto;
+    }
+  }
+
+  //=== Types === //
+
+  // .eleven | .solix
+  &-one {
+
+    .block--two {
+      padding-left: 5.5rem;
+
+      @include xs {
+        display: flex;
+        align-items: center;
+        flex-direction: row;
+        justify-content: space-between;
+      }
+
+    }
+
+  }
+
+  // .fly | .ten
+  &-two {
+
+    .block--one {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      @include xs_2 {
+        .image--space-top {
+          position: relative;
+          top: 3rem;
+        }
+      }
+    }
+
+    .block--three {
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-end;
+      padding-right: calc((1440px / 12) + 12px);
+
+      @include md2 {
+
+        .block-title {
+          padding-top: 5rem;
+        }
+      }
+
+      @include xs_2 {
+        padding-right: 0;
+      }
+    }
+
+
+    //responsive
+    .desktop--row {
+      display: flex;
+
+      @include xs_2 {
+        display: none;
+      }
+    }
+
+    .mobile--row {
+      display: none;
+
+      .block--two {
+        display: flex;
+        flex-direction: row;
+        align-items: flex-end;
+        justify-content: space-between;
+        padding-top: 4.5rem;
+
+        .image__block-item {
+
+          &:last-child {
+            position: relative;
+            bottom: 3rem;
+          }
+        }
+      }
+
+      @include xs_2 {
+        display: block;
+      }
+    }
+
+  }
+
+  // .kevo
+  &-three {
+
+    .block-title {
+
+      @include xs {
+        padding-bottom: 4.5rem;
+      }
+
+      .text {
+        @include md2 {
+          br {
+            display: none;
+          }
+        }
+      }
+    }
+
+    .block--two {
+      position: absolute;
+      top: auto;
+      right: 0;
+      text-align: right;
+      z-index: 1;
+      max-width: calc(100% - 41.66667%);
+
+      @include xs {
+        position: relative;
+        max-width: 100%;
+      }
+    }
+
+    .block--three {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      justify-content: space-between;
+
+      .image__block-item:first-child {
+        padding-right: calc(8.33333% + 20px);
+      }
+    }
+
+  }
+
+}

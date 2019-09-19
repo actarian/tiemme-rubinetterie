@@ -1,0 +1,142 @@
+//--------------------------------------------------
+//Media Query
+//--------------------------------------------------
+$xl-width: 1560px;
+$lg2-width: 1499px;
+$lg-width: 1439px;
+$md-width: 1199px;
+$md2-width: 1140px;
+$sm-width: 991px;
+$xs-width: 767px;
+$xs_2-width: 675px;
+$xxs-width: 575px;
+$xxs_1-width: 475px;
+$xxs_2-width: 374px;
+
+
+@mixin xl {
+  @media (max-width: #{$xl-width}) {
+    @content;
+  }
+}
+
+@mixin lg {
+  @media (max-width: #{$lg-width}) {
+    @content;
+  }
+}
+
+@mixin md {
+  @media (max-width: #{$md-width}) {
+    @content;
+  }
+}
+
+@mixin md2 {
+  @media (max-width: #{$md2-width}) {
+    @content;
+  }
+}
+
+@mixin sm {
+  @media (max-width: #{$sm-width}) {
+    @content;
+  }
+}
+
+@mixin xs {
+  @media (max-width: #{$xs-width}) {
+    @content;
+  }
+}
+
+@mixin xs_2 {
+  @media (max-width: #{$xs_2-width}) {
+    @content;
+  }
+}
+
+@mixin xxs {
+  @media (max-width: #{$xxs-width}) {
+    @content;
+  }
+}
+
+@mixin xxs_1 {
+  @media (max-width: #{$xxs_1-width}) {
+    @content;
+  }
+}
+
+@mixin xxs_2 {
+  @media (max-width: #{$xxs_2-width}) {
+    @content;
+  }
+}
+
+//tablet portrait
+@mixin tablet-portrait {
+  @media screen and (orientation: portrait) and (max-device-width: 1024px) {
+    @content;
+  }
+}
+
+//tablet landscape
+@mixin tablet-landscape {
+  @media screen and (orientation: landscape) and (max-device-width: 1024px) {
+    @content;
+  }
+}
+
+//phone landscape
+@mixin phone-landscape {
+  @media screen and (orientation: landscape) and (max-device-width: 768px) {
+    @content;
+  }
+}
+
+
+//--------------------------------------------------
+//Mixins
+//--------------------------------------------------
+
+//Centerize
+@mixin centerize {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+//Alpha Clear Fix
+@mixin clearfix {
+  content: '';
+  display: table;
+  clear: both;
+}
+
+//Alpha Txt
+@mixin alphatxt($color, $perc) {
+  color: rgba($color, $perc);
+}
+
+//Alpha Bg
+@mixin alphabg($color, $perc) {
+  background: rgba($color, $perc);
+}
+
+
+//--------------------------------------------------
+//FONTS
+//--------------------------------------------------
+
+/*
+$weight: 300 - light | 400 - regular | 700 - bold | 900 - black
+$style: normal | italic
+ */
+
+@mixin fontMontserrat($weight: 400, $style: normal) {
+  font-family: $font-Montserrat;
+  font-weight: $weight;
+  font-style: $style;
+}
