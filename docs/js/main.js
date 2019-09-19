@@ -14,6 +14,7 @@ Website by Websolute
     isSafari = /constructor/i.test(window.HTMLElement) || (function (p) {
       return p.toString() === "[object SafariRemoteNotification]";
     })(!window['safari'] || safari.pushNotification),
+    isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream,
     isIE11 = !!navigator.userAgent.match(/Trident.*rv[ :]*11\./),
     isMobile = false;
 
@@ -104,7 +105,7 @@ Website by Websolute
     };
 
     OverScroll.prototype.getSrc = function (frame) {
-      return this.source.replace('{frame}', this.pad(frame, 4)).replace('{ext}', isSafari ? 'jp2' : 'webp');
+      return this.source.replace('{frame}', this.pad(frame, 4)).replace('{ext}', (isSafari || isIOS) ? 'jp2' : 'webp');
     };
 
     OverScroll.prototype.pad = function (value, num) {
@@ -276,7 +277,7 @@ Website by Websolute
     //Header scroll
     var scroll = $(window).scrollTop();
 
-    if (scroll >= 400) {
+    if (scroll >= window.innerHeight) {
       header.addClass("header--fixed").addClass("header--enter");
     } else {
       header.removeClass("header--fixed").removeClass("header--enter");
