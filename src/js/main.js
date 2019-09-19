@@ -50,7 +50,7 @@ Website by Websolute
         x: 0,
         y: 0
       };
-      this.preload();
+      // this.preload();
     };
 
     OverScroll.prototype.preload = function () {
@@ -103,7 +103,8 @@ Website by Websolute
     };
 
     OverScroll.prototype.getSrc = function (frame) {
-      return this.source.replace('{frame}', this.pad(frame, 4)).replace('{ext}', (isSafari || isIOS) ? 'jp2' : 'webp');
+      // return this.source.replace('{frame}', this.pad(frame, 4)).replace('{ext}', (isSafari || isIOS) ? 'jp2' : 'webp');
+      return this.source.replace('{frame}', this.pad(frame, 4)).replace('{ext}', 'jpg');
     };
 
     OverScroll.prototype.pad = function (value, num) {
