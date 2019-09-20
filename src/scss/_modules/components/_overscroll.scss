@@ -33,7 +33,7 @@
       left: 35vw;
     }
 
-    @include xs {
+    @include xs_2 {
       position: relative;
       width: calc(100vw - 60px);
       height: calc(100vw - 60px);

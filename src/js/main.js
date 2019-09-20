@@ -35,17 +35,16 @@ Website by Websolute
       height: 0,
     };
 
-    var MODES = {
-      NONE: 0,
-      FIXED: 1,
-      ABSOLUTE: 2,
+    var SIZES = {
+      XS: 0,
+      SM: 675,
+      MD: 1024,
     };
 
     var OverScroll = function (element) {
       this.element = element;
       this.inner = element.querySelector('.overscroll__inner');
       this.image = element.querySelector(element.getAttribute('image'));
-      this.image.onload = this.onload.bind(this);
       this.source = element.getAttribute('source') || 'assets/img/hero/cover_alpha_{frame}.{ext}';
       this.totalFrames = 100;
       this.rect = {
@@ -54,58 +53,19 @@ Website by Websolute
         width: 0,
         height: 0,
       };
-      window.addEventListener('resize', this.scroll.bind(this));
+      window.addEventListener('resize', this.resize.bind(this));
+      this.resize();
       // this.preload();
     };
 
-    OverScroll.prototype.preload = function () {
-      var count = 0,
-        totalFrames = this.totalFrames,
-        getSrc = this.getSrc;
-
-      var next = function () {
-        var image = new Image();
-        var onload = function () {
-          if (count < totalFrames) {
-            count++;
-            next();
-          }
-        }.bind(this);
-        image.onload = onload;
-        image.src = this.getSrc(count + 1);
-      }.bind(this);
-
-      next();
-    };
-
     OverScroll.prototype.setFrame = function (frame) {
-      this.frame = frame = 1 + Math.floor(frame / 2) * 2;
-      if (!this.busy && this.currentFrame !== frame) {
-        if (this.currentFrame === undefined) {
-          this.currentFrame = frame;
-        }
-        var nextFrame = frame;
-        /*
-        this.busy = true;
-        if (frame > this.currentFrame) {
-          nextFrame = this.currentFrame + 2;
-        } else if (frame < this.currentFrame) {
-          nextFrame = this.currentFrame - 2;
-        }
-        */
-        this.currentFrame = nextFrame;
-        // var src = this.getSrc(nextFrame);
-        // this.image.src = src;
+      frame = 1 + Math.floor(frame / 2) * 2;
+      if (this.frame !== frame) {
+        this.frame = frame;
         var width = this.image.parentNode.getBoundingClientRect().width;
         var offset = Math.min(49, Math.floor(frame / 2));
-        // console.log(width, offset, (-width * offset));
         this.image.style.transform = 'translate3d(' + (-width * offset) + 'px,0,0)';
       }
-    };
-
-    OverScroll.prototype.onload = function () {
-      this.busy = false;
-      this.setFrame(this.frame);
     };
 
     OverScroll.prototype.scroll = function (scrollY) {
@@ -118,15 +78,17 @@ Website by Websolute
       rect.height = boundingRect.height;
       windowRect.width = window.innerWidth;
       windowRect.height = window.innerHeight;
-      // if (this.source === 'assets/img/hero/cover_alpha_{frame}.{ext}') {
       var pow = 0;
-      if (this.source === 'assets/img/video/video_{frame}.{ext}' || windowRect.width < 768) {
+      if (this.source === 'assets/img/video/video-{size}.jpg' || windowRect.width < SIZES.SM) {
         // pow = rect.top / (window.innerHeight + (window.innerHeight - rect.height));
         pow = rect.top / (window.innerHeight * 0.5 + (window.innerHeight - rect.height));
         pow = ((pow - 1) * -1) / 2;
         pow = Math.max(0, Math.min(1, pow));
       } else {
-        pow = 0.5 + (rect.top + (rect.top + rect.height / 2 - window.innerHeight / 2)) / window.innerHeight;
+        // pow = 0.5 + (rect.top + (rect.top + rect.height / 2 - window.innerHeight / 2)) / window.innerHeight;
+        var y = rect.top + (window.innerHeight - rect.height);
+        var h = window.innerHeight * 0.8;
+        pow = y / (h * 0.5 + (h - rect.height));
         pow = ((pow - 1) * -1) / 2;
         pow = Math.max(0, Math.min(1, pow));
       }
@@ -134,14 +96,18 @@ Website by Websolute
       this.setFrame(frame);
     };
 
-    OverScroll.prototype.getSrc = function (frame) {
-      // return this.source.replace('{frame}', this.pad(frame, 4)).replace('{ext}', (isSafari || isIOS) ? 'jp2' : 'webp');
-      return this.source.replace('{frame}', this.pad(frame, 4)).replace('{ext}', 'jpg');
-    };
-
-    OverScroll.prototype.pad = function (value, num) {
-      value = value.toString();
-      return value.length < num ? this.pad('0' + value, num) : value;
+    OverScroll.prototype.resize = function () {
+      var size = Object.keys(SIZES).reduce(function (p, size) {
+        return SIZES[size] < window.innerWidth ? size : p;
+      }, 'XS');
+      if (this.size !== size) {
+        this.size = size;
+        this.image.src = this.source.replace('{size}', size.toLowerCase());
+      }
+      this.scroll();
+      var frame = this.frame;
+      this.frame = null;
+      this.setFrame(frame);
     };
 
     var overScrolls = Array.prototype.slice.call(document.querySelectorAll('[overscroll]')).map(function (element) {
